@@ -1,0 +1,22 @@
+{
+    "name": "dongnan/microrouter",
+    "type": "library",
+    "description": "A mirco & powerful router library for PHP",
+    "keywords": ["microrouter", "router", "library"],
+    "homepage": "http://github.com/dongnan/MicroRouter/",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "dongnan",
+            "email": "hidongnan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "microRouter\\": "src/microRouter/"
+        }
+    }
+}
