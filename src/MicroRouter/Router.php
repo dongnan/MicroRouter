@@ -69,10 +69,10 @@ class Router {
         $this->is_cgi = (0 === strpos(PHP_SAPI, 'cgi') || false !== strpos(PHP_SAPI, 'fcgi')) ? true : false;
         if (!$this->is_cli) {
             $this->http_host = isset($_SERVER['HTTP_HOST']) ? strtolower($_SERVER['HTTP_HOST']) : '';
-            $this->request_uri = isset($_REQUEST['REQUEST_URI']) ? $_REQUEST['REQUEST_URI'] : '';
+            $this->request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
             $pos = strpos('?', $this->request_uri);
             $this->request_path = $pos === false ? $this->request_uri : substr($this->request_uri, 0, $pos);
-            $this->query_string = isset($_REQUEST['QUERY_STRING']) ? $_REQUEST['QUERY_STRING'] : '';
+            $this->query_string = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
             $this->request_method = isset($_SERVER['REQUEST_METHOD']) ? strtoupper($_SERVER['REQUEST_METHOD']) : '';
             $this->is_ajax = ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[$this->conf['PARAMS_AJAX_SUBMIT']]) || !empty($_GET[$this->conf['PARAMS_AJAX_SUBMIT']])) ? true : false;
             $this->is_get = $this->request_method === 'GET' ? true : false;
