@@ -24,6 +24,8 @@ class Router {
         'URL_HTML_SUFFIX' => 'html',
         //默认的AJAX提交变量
         'PARAMS_AJAX_SUBMIT' => 'ajax',
+        //出错情况的回调
+        'ERROR_HANDLER' => null,
     ];
     private $match_types = [
         'i' => '[0-9]+',
@@ -195,17 +197,22 @@ class Router {
             if ($match) {
                 foreach ($rules as $method => $callback) {
                     if ($method === '*') {
-                        call_user_func($callback, $params);
+                        call_user_func($callback, $params, $this);
                         $matched_count++;
                     } elseif (strcasecmp($method, $this->request_method)) {
-                        call_user_func($callback, $params);
+                        call_user_func($callback, $params, $this);
                         $matched_count++;
                     }
                 }
             }
         }
         if (!$matched_count) {
-            //TODO
+            if (is_callable($this->conf['ERROR_HANDLER'])) {
+                call_user_func($this->conf['ERROR_HANDLER'], $this);
+            } else {
+                header("HTTP/1.0 404 Not Found");
+                exit;
+            }
         }
         $this->is_dispatched = true;
     }
