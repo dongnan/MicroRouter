@@ -18,11 +18,6 @@ class Router {
 
     /** 默认配置 */
     private $conf = [
-        //多域名部署
-        'MULTI_DOMAIN_DEPLOY' => false,
-        //多域名部署规则
-        'MULTI_DOMAIN_RULES' => [],
-        'DEFAULT_MODULE' => 'home',
         //获取当前请求地址的系统变量 默认为REQUEST_URI
         'URL_REQUEST_URI' => 'REQUEST_URI',
         //URL伪静态后缀设置
@@ -39,7 +34,6 @@ class Router {
         '**' => '.++',
         '' => '[^/]+?'
     ];
-    private $segments = [];
     private $route_rules = [];
     private $path_prefix = '';
     private $is_win = null;
