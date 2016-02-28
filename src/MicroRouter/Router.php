@@ -120,6 +120,22 @@ class Router {
         return $this->is_delete;
     }
 
+    public function get($path, $callable) {
+        return $this->respond('GET', $path, $callable);
+    }
+
+    public function post($path, $callable) {
+        return $this->respond('POST', $path, $callable);
+    }
+
+    public function put($path, $callable) {
+        return $this->respond('PUT', $path, $callable);
+    }
+
+    public function delete($path, $callable) {
+        return $this->respond('DELETE', $path, $callable);
+    }
+
     public function respond($path, $callable) {
         $method = '*';
         if (func_num_args() === 3) {
