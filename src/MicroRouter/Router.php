@@ -49,6 +49,7 @@ class Router {
     private $is_post = null;
     private $is_put = null;
     private $is_delete = null;
+    private $is_dispatched = false;
 
     /**
      * 构造函数
@@ -205,6 +206,13 @@ class Router {
         }
         if (!$matched_count) {
             //TODO
+        }
+        $this->is_dispatched = true;
+    }
+
+    public function __destruct() {
+        if (!$this->is_dispatched) {
+            $this->dispatch();
         }
     }
 
