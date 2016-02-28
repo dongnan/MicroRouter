@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "microRouter\\": "src/microRouter/"
+            "MicroRouter\\": "src/MicroRouter/"
         }
     }
 }
