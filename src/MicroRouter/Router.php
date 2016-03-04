@@ -193,7 +193,7 @@ class Router {
         $params = array();
         $matched_count = 0;
         foreach ($this->route_rules as $regex => $rules) {
-            $match = preg_match($regex, $this->request_uri, $params);
+            $match = preg_match($regex, $this->request_path, $params);
             if ($match) {
                 foreach ($rules as $method => $callback) {
                     if ($method === '*') {
