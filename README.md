@@ -45,6 +45,7 @@ $router->dispatch();
 ```
 ### 响应所有`request_method`
 ```php
+<?php
 $router->respond('/hello-world', function () {
     return 'Hello World!';
 });
@@ -52,6 +53,7 @@ $router->respond('/hello-world', function () {
 
 ### 参数命名
 ```php
+<?php
 $router->respond('/[:name]', function ($params) {
     return 'Hello ' . $params['name'];
 });
@@ -59,6 +61,7 @@ $router->respond('/[:name]', function ($params) {
 
 ### RESTful 
 ```php
+<?php
 $router->respond('GET', '/users', $callback);
 $router->respond('POST', '/users', $callback);
 $router->respond('PUT', '/users/[i:id]', $callback);
@@ -66,7 +69,6 @@ $router->respond('DELETE', '/users/[i:id]', $callback);
 //匹配多个请求
 $router->respond(array('GET','POST'), '/path', $callback);
 ```
-
 
 # LICENSE
 
