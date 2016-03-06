@@ -162,7 +162,15 @@ class Router {
         if (!isset($this->route_rules[$regex])) {
             $this->route_rules[$regex] = [];
         }
-        $this->route_rules[$regex][$method] = $callable;
+        if (is_array($method)) {
+            foreach ($method as $m) {
+                if (is_string($m)) {
+                    $this->route_rules[$regex][$m] = $callable;
+                }
+            }
+        } elseif (is_string($method)) {
+            $this->route_rules[$regex][$method] = $callable;
+        }
         return $this;
     }
 
