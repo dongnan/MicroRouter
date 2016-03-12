@@ -70,6 +70,15 @@ $router->respond('DELETE', '/users/[i:id]', $callback);
 $router->respond(array('GET','POST'), '/path', $callback);
 ```
 
+# server配置
+### nginx
+在虚拟主机的配置的server内添加以下配置
+```nginx
+location / {
+  try_files $uri $uri/ /index.php?$args;
+}
+```
+
 # LICENSE
 
 使用非常灵活宽松的 [New BSD License](http://opensource.org/licenses/BSD-3-Clause) 协议
