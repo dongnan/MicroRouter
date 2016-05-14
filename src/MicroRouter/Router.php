@@ -207,7 +207,7 @@ class Router {
                     if ($method === '*') {
                         call_user_func($callback, $params, $this);
                         $matched_count++;
-                    } elseif (strcasecmp($method, $this->request_method)) {
+                    } elseif (strcasecmp($method, $this->request_method) === 0) {
                         call_user_func($callback, $params, $this);
                         $matched_count++;
                     }
