@@ -198,6 +198,7 @@ class Router {
     }
 
     public function dispatch() {
+        $this->is_dispatched = true;
         $params = array();
         $matched_count = 0;
         foreach ($this->route_rules as $regex => $rules) {
@@ -222,7 +223,6 @@ class Router {
                 exit;
             }
         }
-        $this->is_dispatched = true;
     }
 
     public function __destruct() {
