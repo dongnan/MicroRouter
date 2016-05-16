@@ -73,7 +73,7 @@ class Router {
         if (!$this->is_cli) {
             $this->http_host = isset($_SERVER['HTTP_HOST']) ? strtolower($_SERVER['HTTP_HOST']) : '';
             $this->request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-            $pos = strpos('?', $this->request_uri);
+            $pos = strpos($this->request_uri, '?');
             $this->request_path = $pos === false ? $this->request_uri : substr($this->request_uri, 0, $pos);
             $this->query_string = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
             $this->request_method = isset($_SERVER['REQUEST_METHOD']) ? strtoupper($_SERVER['REQUEST_METHOD']) : '';
@@ -85,7 +85,7 @@ class Router {
         } else {
             $opt = getopt('r:', [$this->conf['URL_REQUEST_URI'] . ':']);
             $this->request_uri = !empty($opt['r']) ? $opt['r'] : (!empty($opt[$this->conf['URL_REQUEST_URI']]) ? $opt[$this->conf['URL_REQUEST_URI']] : '');
-            $pos = strpos('?', $this->request_uri);
+            $pos = strpos($this->request_uri, '?');
             $this->request_path = $pos === false ? $this->request_uri : substr($this->request_uri, 0, $pos);
             $this->query_string = $pos === false ? '' : substr($this->request_uri, $pos + 1);
         }
