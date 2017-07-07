@@ -58,7 +58,7 @@ class Router {
      * 构造函数
      * @param array $config
      */
-    public function __construct($config = array()) {
+    public function __construct($config = []) {
         if (!empty($config)) {
             $this->conf = array_merge($this->conf, $config);
         }
@@ -213,11 +213,17 @@ class Router {
 
     public function dispatch() {
         $this->is_dispatched = true;
-        $params              = array();
+        $matches             = [];
+        $params              = [];
         $matched_count       = 0;
         foreach ($this->route_rules as $regex => $rules) {
-            $match = preg_match($regex, $this->request_path, $params);
+            $match = preg_match($regex, $this->request_path, $matches);
             if ($match) {
+                foreach ($matches as $key => $value) {
+                    if (is_string($key)) {
+                        $params[$key] = $value;
+                    }
+                }
                 foreach ($rules as $method => $callback) {
                     if ($method === '*') {
                         call_user_func($callback, $params, $this);
