@@ -30,6 +30,7 @@ class Router {
     private $match_types    = [
         'i'  => '[0-9]+',
         'a'  => '[0-9A-Za-z]+',
+        'c'  => '[A-Za-z][0-9A-Za-z_]*',
         'h'  => '[0-9A-Fa-f]+',
         's'  => '[0-9A-Za-z-_]+',
         '*'  => '.+?',
